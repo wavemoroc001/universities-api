@@ -26,7 +26,7 @@ public class StudentController {
 
     @GetMapping("/{stuId}")
     public ResponseEntity<?> getStudentByStuId(@PathVariable Long stuId) {
-        return ResponseEntity.ok().body(studentService.getSafeStudent(stuId));
+        return ResponseEntity.ok().body(admissionService.getStudentDTO(stuId));
     }
 
     @DeleteMapping("/{stuId}")
