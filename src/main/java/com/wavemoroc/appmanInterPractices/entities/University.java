@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Entity
 @NoArgsConstructor
@@ -19,12 +20,9 @@ public class University {
     private String uniName;
     private String uniAddress;
 
-    @ManyToMany
-    @JoinTable(name = "studentAdmission",
-            joinColumns = {@JoinColumn(name = "uniId", referencedColumnName = "uniId")},
-            inverseJoinColumns = {@JoinColumn(name = "stuId", referencedColumnName = "stuId")}
-    )
-    private List<Student> studentList;
+    @OneToMany(targetEntity = Admission.class)
+    @JoinColumn(name = "universityId")
+    private List<Admission> admissionList = new CopyOnWriteArrayList<>();
 
     public University(String uniName, String uniAddress) {
         this.uniName = uniName;

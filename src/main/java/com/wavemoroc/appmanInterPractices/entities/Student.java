@@ -1,12 +1,12 @@
 package com.wavemoroc.appmanInterPractices.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Entity
 @Table(name = "students")
@@ -20,12 +20,9 @@ public class Student {
     private String firstname;
     private String lastname;
 
-    @ManyToMany
-    @JoinTable(name = "studentAdmission",
-            joinColumns = {@JoinColumn(name = "stuId", referencedColumnName = "stuId")},
-            inverseJoinColumns = {@JoinColumn(name = "uniId", referencedColumnName = "uniId")}
-    )
-    private List<University> universityList;
+    @OneToMany(targetEntity = Admission.class)
+    @JoinColumn(name = "studentId")
+    private List<Admission> admissionList = new CopyOnWriteArrayList<>();
 
     public Student(String firstname, String lastname) {
         this.firstname = firstname;
