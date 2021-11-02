@@ -1,5 +1,6 @@
 package com.wavemoroc.appmanInterPractices.controller;
 
+import com.wavemoroc.appmanInterPractices.service.AdmissionService;
 import com.wavemoroc.appmanInterPractices.service.UniversityService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequestMapping("/universities")
 public class UniversityController {
-    private UniversityService universityService;
+    private final UniversityService universityService;
+    private final AdmissionService admissionService;
 
     @GetMapping
     public ResponseEntity<?> getAllUniversity() {
@@ -23,6 +25,6 @@ public class UniversityController {
 
     @GetMapping("/{uniId}")
     public ResponseEntity<?> getUniversityByUniId(@PathVariable Long uniId) {
-        return ResponseEntity.ok().body(universityService.getSafeUniversity(uniId));
+        return ResponseEntity.ok().body(admissionService.getUniversityDTO(uniId));
     }
 }

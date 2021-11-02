@@ -5,9 +5,12 @@ import com.wavemoroc.appmanInterPractices.entities.Student;
 import com.wavemoroc.appmanInterPractices.entities.University;
 import com.wavemoroc.appmanInterPractices.repositories.AdmissionRepository;
 import com.wavemoroc.appmanInterPractices.util.StudentDTO;
+import com.wavemoroc.appmanInterPractices.util.UniversityDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -27,8 +30,18 @@ public class AdmissionService {
 
     public StudentDTO getStudentDTO(Long stuId) {
         Student student = studentService.getSafeStudent(stuId);
-        var admissionList = admissionRepository.getAdmissionList(stuId);
+        var admissionList = admissionRepository.getAdmissionDTOList(stuId);
         return new StudentDTO(student, admissionList);
+    }
+
+    public UniversityDTO getUniversityDTO(Long uniId) {
+        University university = universityService.getSafeUniversity(uniId);
+        var stuIdList = admissionRepository.getStudentIdInUniversityList(uniId);
+        var studentDTOList = new ArrayList<StudentDTO>();
+        for (Long stuId : stuIdList) {
+            studentDTOList.add(getStudentDTO(stuId));
+        }
+        return new UniversityDTO(university, studentDTOList);
     }
 
     public void deleteAllAdmissionByStudId(Long stuId) {
