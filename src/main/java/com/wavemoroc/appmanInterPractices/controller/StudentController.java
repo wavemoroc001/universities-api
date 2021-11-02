@@ -43,4 +43,12 @@ public class StudentController {
         Student student = studentService.addStudent(dto);
         return ResponseEntity.created(URI.create("students/" + student.getStuId())).body(admissionService.getStudentDTO(student.getStuId()));
     }
+
+    @PutMapping("/{stuId}")
+    public ResponseEntity<?> updateStudent(@PathVariable Long stuId, @RequestParam String stuForm) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        StudentFormDTO dto = mapper.readValue(stuForm, StudentFormDTO.class);
+        Student student = studentService.updateStudent(stuId, dto);
+        return ResponseEntity.created(URI.create("students/" + student.getStuId())).body(admissionService.getStudentDTO(stuId));
+    }
 }

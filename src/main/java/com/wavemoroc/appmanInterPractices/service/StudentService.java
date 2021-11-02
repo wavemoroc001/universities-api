@@ -47,4 +47,17 @@ public class StudentService {
             throw new InvalidFormException("firstname or lastname is null");
         }
     }
+
+    public Student updateStudent(Long stuId, StudentFormDTO dto) {
+        if (dto.getFirstname() != null && dto.getLastname() != null) {
+            Student student = getSafeStudent(stuId);
+            student.setFirstname(dto.getFirstname());
+            student.setLastname(dto.getLastname());
+            student = save(student);
+            log.info("update student " + student.getFirstname());
+            return student;
+        } else {
+            throw new InvalidFormException("firstname or lastname is null");
+        }
+    }
 }
