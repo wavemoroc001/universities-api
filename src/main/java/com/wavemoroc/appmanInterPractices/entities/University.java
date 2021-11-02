@@ -18,7 +18,9 @@ public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uniId;
+    @Column(nullable = false)
     private String uniName;
+    @Column(nullable = false)
     private String uniAddress;
 
     @OneToMany(targetEntity = Admission.class)

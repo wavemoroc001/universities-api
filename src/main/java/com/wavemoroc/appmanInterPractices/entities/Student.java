@@ -18,7 +18,9 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long stuId;
+    @Column(nullable = false)
     private String firstname;
+    @Column(nullable = false)
     private String lastname;
 
     @OneToMany(targetEntity = Admission.class)
