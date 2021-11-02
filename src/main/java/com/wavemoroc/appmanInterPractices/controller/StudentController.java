@@ -1,5 +1,6 @@
 package com.wavemoroc.appmanInterPractices.controller;
 
+import com.wavemoroc.appmanInterPractices.service.AdmissionService;
 import com.wavemoroc.appmanInterPractices.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
+    private final AdmissionService admissionService;
 
     @GetMapping
     public ResponseEntity<?> getAllStudents() {
@@ -21,6 +23,6 @@ public class StudentController {
 
     @GetMapping("/{stuId}")
     public ResponseEntity<?> getStudentByStuId(@PathVariable Long stuId) {
-        return ResponseEntity.ok().body(studentService.getSafeStudent(stuId));
+        return ResponseEntity.ok().body(admissionService.getStudentDTO(stuId));
     }
 }

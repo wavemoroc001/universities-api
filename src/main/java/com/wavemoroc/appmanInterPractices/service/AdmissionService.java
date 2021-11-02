@@ -4,6 +4,7 @@ import com.wavemoroc.appmanInterPractices.entities.Admission;
 import com.wavemoroc.appmanInterPractices.entities.Student;
 import com.wavemoroc.appmanInterPractices.entities.University;
 import com.wavemoroc.appmanInterPractices.repositories.AdmissionRepository;
+import com.wavemoroc.appmanInterPractices.util.StudentDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,17 @@ public class AdmissionService {
     private final AdmissionRepository admissionRepository;
 
     public void addAdmission(Student student, String gradYear, Admission.EDU_LEVEL eduLevel, University university) {
-        Admission admission = admissionRepository.save(new Admission(gradYear,eduLevel));
+        Admission admission = admissionRepository.save(new Admission(gradYear, eduLevel));
         student.getAdmissionList().add(admission);
         university.getAdmissionList().add(admission);
         universityService.save(university);
         studentService.save(student);
     }
+
+    public StudentDTO getStudentDTO(Long stuId) {
+        Student student = studentService.getSafeStudent(stuId);
+        var admissionList = admissionRepository.getAdmissionList(stuId);
+        return new StudentDTO(student, admissionList);
+    }
+
 }
