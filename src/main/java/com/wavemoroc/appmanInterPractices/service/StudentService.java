@@ -1,9 +1,10 @@
 package com.wavemoroc.appmanInterPractices.service;
 
 import com.wavemoroc.appmanInterPractices.entities.Student;
+import com.wavemoroc.appmanInterPractices.exceptions.InvalidAddFormException;
 import com.wavemoroc.appmanInterPractices.exceptions.StudentNotFoundException;
-import com.wavemoroc.appmanInterPractices.repositories.AdmissionRepository;
 import com.wavemoroc.appmanInterPractices.repositories.StudentRepository;
+import com.wavemoroc.appmanInterPractices.util.AddStudentDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,6 @@ public class StudentService {
 
     public Student save(Student student) {
         student = studentRepository.save(student);
-        log.info("add/update student " + student.getFirstname());
         return student;
     }
 
@@ -36,5 +36,15 @@ public class StudentService {
 
     public void deleteStudent(Long stuId) {
         studentRepository.deleteByStuId(stuId);
+    }
+
+    public Student addStudent(AddStudentDTO dto) {
+        if (dto.getFirstname() != null && dto.getLastname() != null) {
+            Student student = save(new Student(dto.getFirstname(), dto.getLastname()));
+            log.info("add student " + student.getFirstname());
+            return student;
+        } else {
+            throw new InvalidAddFormException("firstname or lastname is null");
+        }
     }
 }
