@@ -1,8 +1,10 @@
 package com.wavemoroc.appmanInterPractices.service;
 
 import com.wavemoroc.appmanInterPractices.entities.University;
+import com.wavemoroc.appmanInterPractices.exceptions.InvalidFormException;
 import com.wavemoroc.appmanInterPractices.exceptions.UniversityNotFoundException;
 import com.wavemoroc.appmanInterPractices.repositories.UniversityRepository;
+import com.wavemoroc.appmanInterPractices.util.UniversityFormDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class UniversityService {
 
     public University save(University university) {
         university = universityRepository.save(university);
-        log.info("add/update university " + university.getUniName());
+//        log.info("add/update university " + university.getUniName());
         return university;
     }
 
@@ -35,5 +37,15 @@ public class UniversityService {
 
     public void deleteUniversity(University university) {
         universityRepository.delete(university);
+    }
+
+    public University addUniversity(UniversityFormDTO dto) {
+        if (dto.getUniName() != null && dto.getUniAddress() != null) {
+            University university = save(new University(dto.getUniName(), dto.getUniAddress()));
+            log.info("add university " + university.getUniName());
+            return university;
+        } else {
+            throw new InvalidFormException("University name or address can not null");
+        }
     }
 }
