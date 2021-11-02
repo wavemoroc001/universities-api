@@ -45,6 +45,20 @@ public class UniversityService {
             log.info("add university " + university.getUniName());
             return university;
         } else {
+            log.error("University name or address can not nul");
+            throw new InvalidFormException("University name or address can not null");
+        }
+    }
+
+    public University updateUniversity(Long uniId, UniversityFormDTO dto) {
+        if (dto.getUniName() != null && dto.getUniAddress() != null) {
+            University university = getSafeUniversity(uniId);
+            university.setUniAddress(dto.getUniAddress());
+            university.setUniName(dto.getUniName());
+            university = save(university);
+            log.info("add university " + university.getUniName());
+            return university;
+        } else {
             throw new InvalidFormException("University name or address can not null");
         }
     }

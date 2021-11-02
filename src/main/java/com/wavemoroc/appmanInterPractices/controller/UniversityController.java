@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @AllArgsConstructor
 @Slf4j
@@ -35,5 +37,13 @@ public class UniversityController {
         UniversityFormDTO dto = mapper.readValue(uniForm, UniversityFormDTO.class);
         University university = universityService.addUniversity(dto);
         return ResponseEntity.ok().body(admissionService.getUniversityDTO(university.getUniId()));
+    }
+
+    @PutMapping("/{uniId}")
+    public ResponseEntity<?> updateUniversity(@PathVariable Long uniId, @RequestParam String uniForm) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        UniversityFormDTO dto = mapper.readValue(uniForm, UniversityFormDTO.class);
+        University university = universityService.updateUniversity(uniId, dto);
+        return ResponseEntity.created(URI.create("universities/" + university.getUniId())).body(admissionService.getUniversityDTO(university.getUniId()));
     }
 }
