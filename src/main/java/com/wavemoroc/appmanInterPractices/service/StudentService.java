@@ -38,7 +38,7 @@ public class StudentService {
         studentRepository.deleteByStuId(stuId);
     }
 
-    public Student addStudent(AddStudentDTO dto) {
+    public Student addStudent(StudentFormDTO dto) {
         if (dto.getFirstname() != null && dto.getLastname() != null) {
             Student student = save(new Student(dto.getFirstname(), dto.getLastname()));
             log.info("add student " + student.getFirstname());

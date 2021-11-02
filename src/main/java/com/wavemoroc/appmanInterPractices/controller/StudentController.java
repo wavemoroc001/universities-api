@@ -2,9 +2,10 @@ package com.wavemoroc.appmanInterPractices.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wavemoroc.appmanInterPractices.entities.Student;
 import com.wavemoroc.appmanInterPractices.service.AdmissionService;
 import com.wavemoroc.appmanInterPractices.service.StudentService;
-import com.wavemoroc.appmanInterPractices.util.AddStudentDTO;
+import com.wavemoroc.appmanInterPractices.util.StudentFormDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,8 +39,8 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<?> addStudent(@RequestParam String stuForm) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        AddStudentDTO dto = mapper.readValue(stuForm, AddStudentDTO.class);
-        studentService.addStudent(dto);
-        return ResponseEntity.created(URI.create("students")).build();
+        StudentFormDTO dto = mapper.readValue(stuForm, StudentFormDTO.class);
+        Student student = studentService.addStudent(dto);
+        return ResponseEntity.created(URI.create("students/" + student.getStuId())).body(admissionService.getStudentDTO(student.getStuId()));
     }
 }

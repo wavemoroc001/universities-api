@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddStudentDTO {
+public class StudentFormDTO {
     private String firstname;
     private String lastname;
 }
