@@ -1,4 +1,4 @@
-package com.wavemoroc.appman_inter_practices.entities;
+package com.wavemoroc.appmanInterPractices.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
