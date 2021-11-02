@@ -1,5 +1,6 @@
 package com.wavemoroc.appmanInterPractices.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class University {
 
     @OneToMany(targetEntity = Admission.class)
     @JoinColumn(name = "universityId")
+    @JsonIgnore
     private List<Admission> admissionList = new CopyOnWriteArrayList<>();
 
     public University(String uniName, String uniAddress) {

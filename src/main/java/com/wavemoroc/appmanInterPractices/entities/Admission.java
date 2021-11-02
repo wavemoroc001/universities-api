@@ -1,5 +1,6 @@
 package com.wavemoroc.appmanInterPractices.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +18,9 @@ public class Admission {
     private String graduatedYear;
     @Enumerated(EnumType.STRING)
     private EDU_LEVEL eduLevel;
+    @JsonIgnore
     private Long studentId;
+    @JsonIgnore
     private Long universityId;
 
     public static enum EDU_LEVEL {
