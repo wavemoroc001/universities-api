@@ -17,4 +17,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({InvalidAddFormException.class})
+    public final ResponseEntity<?> HandleInvalidAddFormException(InvalidAddFormException ex) {
+        ExceptionRes res = new ExceptionRes(HttpStatus.BAD_REQUEST, LocalDateTime.now().toString(), ex.getLocalizedMessage());
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+    }
 }
