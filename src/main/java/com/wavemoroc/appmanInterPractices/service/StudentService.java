@@ -1,10 +1,10 @@
 package com.wavemoroc.appmanInterPractices.service;
 
 import com.wavemoroc.appmanInterPractices.entities.Student;
-import com.wavemoroc.appmanInterPractices.exceptions.InvalidAddFormException;
+import com.wavemoroc.appmanInterPractices.exceptions.InvalidFormException;
 import com.wavemoroc.appmanInterPractices.exceptions.StudentNotFoundException;
 import com.wavemoroc.appmanInterPractices.repositories.StudentRepository;
-import com.wavemoroc.appmanInterPractices.util.AddStudentDTO;
+import com.wavemoroc.appmanInterPractices.util.StudentFormDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -44,7 +44,7 @@ public class StudentService {
             log.info("add student " + student.getFirstname());
             return student;
         } else {
-            throw new InvalidAddFormException("firstname or lastname is null");
+            throw new InvalidFormException("firstname or lastname is null");
         }
     }
 }
