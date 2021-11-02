@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -15,7 +16,19 @@ import javax.persistence.*;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentId;
+    private Long stuId;
     private String firstname;
     private String lastname;
+
+    @ManyToMany
+    @JoinTable(name = "studentAdmission",
+            joinColumns = {@JoinColumn(name = "stuId", referencedColumnName = "stuId")},
+            inverseJoinColumns = {@JoinColumn(name = "uniId", referencedColumnName = "uniId")}
+    )
+    private List<University> universityList;
+
+    public Student(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }
