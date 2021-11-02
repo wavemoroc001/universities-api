@@ -31,4 +31,8 @@ public class AdmissionService {
         return new StudentDTO(student, admissionList);
     }
 
+    public void deleteAllAdmissionByStudId(Long stuId) {
+        admissionRepository.deleteAllByStudentId(stuId);
+    }
+
 }

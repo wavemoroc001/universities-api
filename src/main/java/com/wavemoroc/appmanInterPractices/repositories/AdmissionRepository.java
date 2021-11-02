@@ -3,7 +3,9 @@ package com.wavemoroc.appmanInterPractices.repositories;
 import com.wavemoroc.appmanInterPractices.entities.Admission;
 import com.wavemoroc.appmanInterPractices.util.AdmissionDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,4 +15,7 @@ public interface AdmissionRepository extends JpaRepository<Admission, Long> {
             "where a.studentId = :stuId ")
     List<AdmissionDTO> getAdmissionList(Long stuId);
 
+    @Modifying
+    @Transactional
+    void deleteAllByStudentId(Long stuId);
 }
