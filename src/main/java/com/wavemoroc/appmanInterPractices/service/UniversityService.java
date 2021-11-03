@@ -19,7 +19,6 @@ public class UniversityService {
 
     public University save(University university) {
         university = universityRepository.save(university);
-//        log.info("add/update university " + university.getUniName());
         return university;
     }
 
@@ -27,16 +26,22 @@ public class UniversityService {
         if (universityRepository.findByUniId(uniId).isPresent()) {
             return universityRepository.findByUniId(uniId).get();
         } else {
+            log.error("university id : " + uniId + " not found");
             throw new UniversityNotFoundException("university id : " + uniId + " not found");
+        }
+    }
+
+    public University getSafeUniversity(String uniName) {
+        if (universityRepository.findByUniName(uniName).isPresent()) {
+            return universityRepository.findByUniName(uniName).get();
+        } else {
+            log.error("university name : " + uniName + " not found");
+            throw new UniversityNotFoundException("university name : " + uniName + " not found");
         }
     }
 
     public List<University> getAllUniversity() {
         return universityRepository.findAll();
-    }
-
-    public void deleteUniversity(University university) {
-        universityRepository.delete(university);
     }
 
     public University addUniversity(UniversityFormDTO dto) {
@@ -59,11 +64,12 @@ public class UniversityService {
             log.info("add university " + university.getUniName());
             return university;
         } else {
+            log.error("University name or address can not null");
             throw new InvalidFormException("University name or address can not null");
         }
     }
 
-    public void deleteUniversity(Long unid) {
-        universityRepository.deleteByUniId(unid);
+    public void deleteUniversity(Long unId) {
+        universityRepository.deleteByUniId(unId);
     }
 }
