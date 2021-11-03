@@ -46,4 +46,12 @@ public class UniversityController {
         University university = universityService.updateUniversity(uniId, dto);
         return ResponseEntity.created(URI.create("universities/" + university.getUniId())).body(admissionService.getUniversityDTO(university.getUniId()));
     }
+
+    @DeleteMapping("/{uniId}")
+    public ResponseEntity<?> deleteUniversity(@PathVariable Long uniId) {
+        admissionService.deleteAllAdmissionByUniId(uniId);
+        universityService.deleteUniversity(uniId);
+        log.info("delete university : " + uniId);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -62,4 +62,8 @@ public class UniversityService {
             throw new InvalidFormException("University name or address can not null");
         }
     }
+
+    public void deleteUniversity(Long unid) {
+        universityRepository.deleteByUniId(unid);
+    }
 }

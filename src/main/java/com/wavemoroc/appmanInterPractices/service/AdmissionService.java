@@ -48,4 +48,8 @@ public class AdmissionService {
         admissionRepository.deleteAllByStudentId(stuId);
     }
 
+    public void deleteAllAdmissionByUniId(Long uniId) {
+        admissionRepository.deleteAllByUniversityId(uniId);
+    }
+
 }

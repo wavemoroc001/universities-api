@@ -22,4 +22,8 @@ public interface AdmissionRepository extends JpaRepository<Admission, Long> {
     @Modifying
     @Transactional
     void deleteAllByStudentId(Long stuId);
+
+    @Modifying
+    @Transactional
+    void deleteAllByUniversityId(Long uniId);
 }
