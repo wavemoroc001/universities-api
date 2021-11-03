@@ -3,9 +3,6 @@ package com.wavemoroc.appmanInterPractices.service;
 import com.wavemoroc.appmanInterPractices.entities.Admission;
 import com.wavemoroc.appmanInterPractices.entities.Student;
 import com.wavemoroc.appmanInterPractices.entities.University;
-import com.wavemoroc.appmanInterPractices.repositories.AdmissionRepository;
-import com.wavemoroc.appmanInterPractices.repositories.StudentRepository;
-import com.wavemoroc.appmanInterPractices.repositories.UniversityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -21,26 +18,27 @@ public class InitialService {
                              UniversityService universityService) {
         return args -> {
 
-            University university = universityService.save(new University("KU", "address"));
+            universityService.save(new University("KKU", "23 Moo 16 Mittraphap Rd., Nai-Muang, Muang District, Khon Kaen 40002"));
+            universityService.save(new University("CU", "254 Phayathai Rd, Wang Mai, Pathum Wan District, Bangkok 10330"));
+            universityService.save(new University("KMUTT", "126 Pracha Uthit Rd, Khwaeng Bang Mot, Khet Thung Khru, Krung Thep Maha Nakhon 10140"));
+            universityService.save(new University("KMITL", "1 Chalong Krung 1 Alley, Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520"));
+            universityService.save(new University("KU", "50 Thanon Phahon Yothin, Khwaeng Lat Yao, Khet Chatuchak, Krung Thep Maha Nakhon 10900"));
+
+
             Student student = studentService.save(new Student("Supatra", "Wongvaree"));
-            admissionService.addAdmission(student,"2020", Admission.EDU_LEVEL.BACHELOR_DEGREE,university);
-            admissionService.addAdmission(student,"2022", Admission.EDU_LEVEL.MASTER_DEGREE,university);
-            admissionService.addAdmission(student,"2025", Admission.EDU_LEVEL.PHD,university);
 
+            admissionService.addAdmission(student, "2020", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KMUTT"));
+            admissionService.addAdmission(student, "2022", Admission.EDU_LEVEL.MASTER_DEGREE, universityService.getSafeUniversity("CU"));
+            admissionService.addAdmission(student, "2025", Admission.EDU_LEVEL.PHD, universityService.getSafeUniversity("KU"));
 
-//            studentAdmissionRepository.save(new Admission("2560", Admission.EDU_LEVEL.BACHELOR_DEGREE, s, u));
-//            studentAdmissionRepository.save(new Admission("2562", Admission.EDU_LEVEL.MASTER_DEGREE, s, u));
-//
-//
-//            u = universityRepository.save(new University("CU", "address"));
-//            s = studentRepository.save(new Student("Pornpavee", "Supattatham"));
-//            studentAdmissionRepository.save(new Admission("2559", Admission.EDU_LEVEL.BACHELOR_DEGREE, s, u));
-//
-//
-//            u = universityRepository.save(new University("KKU", "address"));
-//            s = studentRepository.save(new Student("Ramida", "Wongtee"));
-//            studentAdmissionRepository.save(new Admission("2561", Admission.EDU_LEVEL.BACHELOR_DEGREE, s, u));
+            student = studentService.save(new Student("Pornpavee", "Supattatham"));
 
+            admissionService.addAdmission(student, "2020", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KU"));
+            admissionService.addAdmission(student, "2023", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KKU"));
+
+            student = studentService.save(new Student("Ramida", "Wongtee"));
+            admissionService.addAdmission(student, "2019", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KMUTT"));
+            admissionService.addAdmission(student, "2023", Admission.EDU_LEVEL.MASTER_DEGREE, universityService.getSafeUniversity("KMUTT"));
 
         };
     }
