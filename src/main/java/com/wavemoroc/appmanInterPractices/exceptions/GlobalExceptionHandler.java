@@ -17,6 +17,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({UniversityNotFoundException.class})
+    public final ResponseEntity<?> HandleUniversityNotFoundException(UniversityNotFoundException ex) {
+        ExceptionRes res = new ExceptionRes(HttpStatus.NOT_FOUND, LocalDateTime.now().toString(), ex.getLocalizedMessage());
+        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler({InvalidFormException.class})
     public final ResponseEntity<?> HandleInvalidAddFormException(InvalidFormException ex) {
         ExceptionRes res = new ExceptionRes(HttpStatus.BAD_REQUEST, LocalDateTime.now().toString(), ex.getLocalizedMessage());
