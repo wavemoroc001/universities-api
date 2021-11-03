@@ -9,7 +9,7 @@
 
 ### Relationship
 
-* universities have many student s' admission.
+* universities have many student enrolled.
 * students can enroll in many universities.
   ![er-diagram](./assets/er-diagram.png)
 
