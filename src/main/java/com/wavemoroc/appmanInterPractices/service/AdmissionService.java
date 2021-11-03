@@ -37,9 +37,9 @@ public class AdmissionService {
     public UniversityDTO getUniversityDTO(Long uniId) {
         University university = universityService.getSafeUniversity(uniId);
         var stuIdList = admissionRepository.getStudentIdInUniversityList(uniId);
-        var studentDTOList = new ArrayList<StudentDTO>();
+        var studentDTOList = new ArrayList<Student>();
         for (Long stuId : stuIdList) {
-            studentDTOList.add(getStudentDTO(stuId));
+            studentDTOList.add(studentService.getSafeStudent(stuId));
         }
         return new UniversityDTO(university, studentDTOList);
     }
