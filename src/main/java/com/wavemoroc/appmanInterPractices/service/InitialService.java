@@ -25,18 +25,18 @@ public class InitialService {
             universityService.save(new University("KU", "50 Thanon Phahon Yothin, Khwaeng Lat Yao, Khet Chatuchak, Krung Thep Maha Nakhon 10900"));
 
 
-            Student student = studentService.save(new Student("Supatra", "Wongvaree"));
+            Student student = studentService.save(new Student("John", "Grey"));
 
             admissionService.addAdmission(student, "2020", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KMUTT"));
             admissionService.addAdmission(student, "2022", Admission.EDU_LEVEL.MASTER_DEGREE, universityService.getSafeUniversity("CU"));
             admissionService.addAdmission(student, "2025", Admission.EDU_LEVEL.PHD, universityService.getSafeUniversity("KU"));
 
-            student = studentService.save(new Student("Pornpavee", "Supattatham"));
+            student = studentService.save(new Student("Eric", "Hank"));
 
             admissionService.addAdmission(student, "2020", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KU"));
             admissionService.addAdmission(student, "2023", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KKU"));
 
-            student = studentService.save(new Student("Ramida", "Wongtee"));
+            student = studentService.save(new Student("Tom", "Hank"));
             admissionService.addAdmission(student, "2019", Admission.EDU_LEVEL.BACHELOR_DEGREE, universityService.getSafeUniversity("KMUTT"));
             admissionService.addAdmission(student, "2023", Admission.EDU_LEVEL.MASTER_DEGREE, universityService.getSafeUniversity("KMUTT"));
 
