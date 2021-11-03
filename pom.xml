@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wavemoroc</groupId>
-    <artifactId>appman_inter_practices</artifactId>
+    <artifactId>appmanInterPractices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>appman_inter_practices</name>
     <description>appman_inter_practices</description>

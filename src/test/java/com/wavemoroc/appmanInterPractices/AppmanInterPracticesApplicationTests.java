@@ -1,4 +1,4 @@
-package com.wavemoroc.appman_inter_practices;
+package com.wavemoroc.appmanInterPractices;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

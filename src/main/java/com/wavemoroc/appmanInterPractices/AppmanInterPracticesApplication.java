@@ -1,4 +1,4 @@
-package com.wavemoroc.appman_inter_practices;
+package com.wavemoroc.appmanInterPractices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
