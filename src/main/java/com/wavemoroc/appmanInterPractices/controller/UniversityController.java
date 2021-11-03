@@ -49,9 +49,10 @@ public class UniversityController {
 
     @DeleteMapping("/{uniId}")
     public ResponseEntity<?> deleteUniversity(@PathVariable Long uniId) {
-        admissionService.deleteAllAdmissionByUniId(uniId);
-        universityService.deleteUniversity(uniId);
-        log.info("delete university : " + uniId);
+        University university = universityService.getSafeUniversity(uniId);
+        admissionService.deleteAllAdmissionByUniId(university.getUniId());
+        universityService.deleteUniversity(university.getUniId());
+        log.info("delete university : " + university.getUniName());
         return ResponseEntity.noContent().build();
     }
 }

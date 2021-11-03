@@ -31,8 +31,9 @@ public class StudentController {
 
     @DeleteMapping("/{stuId}")
     public ResponseEntity<?> deleteStudent(@PathVariable Long stuId) {
-        admissionService.deleteAllAdmissionByStudId(stuId);
-        studentService.deleteStudent(stuId);
+        Student student = studentService.getSafeStudent(stuId);
+        admissionService.deleteAllAdmissionByStudId(student.getStuId());
+        studentService.deleteStudent(student.getStuId());
         return ResponseEntity.noContent().build();
     }
 
