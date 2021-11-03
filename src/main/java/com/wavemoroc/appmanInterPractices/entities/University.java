@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,6 +28,7 @@ public class University {
     @OneToMany(targetEntity = Admission.class)
     @JoinColumn(name = "universityId")
     @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Admission> admissionList = new CopyOnWriteArrayList<>();
 
     public University(String uniName, String uniAddress) {
