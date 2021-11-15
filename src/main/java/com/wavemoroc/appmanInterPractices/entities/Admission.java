@@ -18,10 +18,14 @@ public class Admission {
     private String graduatedYear;
     @Enumerated(EnumType.STRING)
     private EDU_LEVEL eduLevel;
+    @ManyToOne
     @JsonIgnore
-    private Long studentId;
+    @JoinColumn(name = "studentId")
+    private Student student;
+    @ManyToOne
     @JsonIgnore
-    private Long universityId;
+    @JoinColumn(name = "universityId")
+    private University university;
 
     public static enum EDU_LEVEL {
         BACHELOR_DEGREE, MASTER_DEGREE, PHD
