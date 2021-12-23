@@ -53,7 +53,7 @@ Example response ( status code 200)
 
 Get student by studentId including admission information
 
-If studentId does not exist, will throw exception studentNotFoundException (status 404)
+If studentId does not exist, will throw exception `studentNotFoundException` (status 404)
 
 Example response ( status code 200)
 
@@ -104,7 +104,7 @@ Value :
 }
 ```
 
-If sending inappropriate form, will return throw InvalidFormException (status 400)
+If sending inappropriate form, will return throw `InvalidFormException` (status 400)
 
 Example response ( status code 201) return inserted data
 
@@ -122,7 +122,7 @@ Example response ( status code 201) return inserted data
 
 Edit firstname, lastname 's Student that has same id, by Form-data
 
-If studentId does not exist, will throw StudentNotFoundException (status 404)
+If studentId does not exist, will throw `StudentNotFoundException` (status 404)
 
 Key : stuForm
 
@@ -135,7 +135,7 @@ Value :
 }
 ```
 
-If sending inappropriate form, will return throw InvalidFormException. (status 400)
+If sending inappropriate form, will return throw `InvalidFormException`. (status 400)
 
 Example response (status code 201) return edited data.
 
@@ -168,7 +168,7 @@ Example response (status code 201) return edited data.
 
 delete student and admission information who has same studentId.
 
-If studentId does not exist, will throw exception studentNotFoundException. (status 404)
+If studentId does not exist, will throw exception `studentNotFoundException`. (status 404)
 
 return status code 204
 
@@ -216,7 +216,7 @@ Example response (status code 200)
 
 Return university information that has same Id and student who enrolled.
 
-If university Id does not exist, will throw exception universityNotFoundException. (status 404)
+If university Id does not exist, will throw exception `universityNotFoundException`. (status 404)
 
 Example response (status code 200)
 
@@ -268,7 +268,7 @@ Example response (status code 201) return inserted data
 
 Edit name,address 's university which has same id
 
-If university Id does not exist, will throw exception universityNotFoundException. (status 404)
+If university Id does not exist, will throw exception `universityNotFoundException`. (status 404)
 
 Key : uniForm
 
@@ -304,6 +304,6 @@ Example Response (status code 201) return edited data
 
 Delete university, admission information which has same Id.
 
-If university Id does not exist, will throw exception universityNotFoundException. (status 404)
+If university Id does not exist, will throw exception `universityNotFoundException`. (status 404)
 
 return status code 204
