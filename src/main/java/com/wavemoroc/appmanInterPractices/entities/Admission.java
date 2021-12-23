@@ -1,6 +1,7 @@
 package com.wavemoroc.appmanInterPractices.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,12 +20,12 @@ public class Admission {
     @Enumerated(EnumType.STRING)
     private EDU_LEVEL eduLevel;
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties({"admissionList"})
     @JoinColumn(name = "studentId")
     private Student student;
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "universityId")
+    @JsonIgnoreProperties({"admissionList"})
     private University university;
 
     public static enum EDU_LEVEL {
