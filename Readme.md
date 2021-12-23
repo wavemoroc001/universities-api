@@ -12,7 +12,9 @@
 
 * universities have many students enrolled.
 * students can enroll in many universities.
+
 <br>
+
   ![er-diagram](./assets/er-diagram.png)
 
 ## Endpoints
