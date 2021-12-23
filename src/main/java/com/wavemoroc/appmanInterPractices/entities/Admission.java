@@ -1,6 +1,7 @@
 package com.wavemoroc.appmanInterPractices.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +19,14 @@ public class Admission {
     private String graduatedYear;
     @Enumerated(EnumType.STRING)
     private EDU_LEVEL eduLevel;
-    @JsonIgnore
-    private Long studentId;
-    @JsonIgnore
-    private Long universityId;
+    @ManyToOne
+    @JsonIgnoreProperties({"admissionList"})
+    @JoinColumn(name = "studentId")
+    private Student student;
+    @ManyToOne
+    @JoinColumn(name = "universityId")
+    @JsonIgnoreProperties({"admissionList"})
+    private University university;
 
     public static enum EDU_LEVEL {
         BACHELOR_DEGREE, MASTER_DEGREE, PHD

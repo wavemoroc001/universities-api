@@ -4,6 +4,7 @@
 
 * Run on port 8080
 * Progress Database Port 5432
+* Java 11
 
 ## ER Diagram
 
@@ -11,6 +12,7 @@
 
 * universities have many students enrolled.
 * students can enroll in many universities.
+<br>
   ![er-diagram](./assets/er-diagram.png)
 
 ## Endpoints
@@ -43,6 +45,7 @@ Example response ( status code 200)
 ]
 
 ```
+<hr>
 
 `GET /students/{studentID}` <br>
 
@@ -83,6 +86,7 @@ Example response ( status code 200)
 }
 
 ```
+<hr>
 
 `POST /students` <br>
 
@@ -110,8 +114,9 @@ Example response ( status code 201) return inserted data
   "admissionList": []
 }
 ```
+<hr>
 
-`PUT \students\{studentId}` <br>
+`PUT /students/{studentId}` <br>
 
 Edit firstname, lastname 's Student that has same id, by Form-data
 
@@ -155,6 +160,7 @@ Example response (status code 201) return edited data.
   ]
 }
 ```
+<hr>
 
 `DELETE /students/{studentId}`
 
@@ -201,6 +207,8 @@ Example response (status code 200)
   }
 ]
 ```
+<hr>
+
 
 `GET /universities/{uniId}`
 
@@ -224,6 +232,8 @@ Example response (status code 200)
   ]
 }
 ```
+<hr>
+
 
 `POST /universities`
 
@@ -250,6 +260,7 @@ Example response (status code 201) return inserted data
   "studentList": []
 }
 ```
+<hr>
 
 `PUT /universities/{uniId}`
 
@@ -284,6 +295,8 @@ Example Response (status code 201) return edited data
   ]
 }
 ```
+
+<hr>
 
 `DELETE /universities/{uniId}`
 
